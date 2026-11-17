@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>COMP MAKER AI</title>
+<style>
+body{margin:0;background:#071426;color:white;font-family:Arial;padding:20px}
+h1{color:#35d9ed;text-align:center}
+.box{background:#10243c;padding:18px;border-radius:15px;margin:15px 0}
+input,select,button{width:100%;padding:13px;margin-top:10px;border-radius:9px;border:1px solid #31516e;box-sizing:border-box}
+button{background:#168cff;color:white;font-weight:bold}
+video{width:100%;margin-top:12px;border-radius:10px}
+p{color:#b9cce0}
+</style>
+</head>
+<body>
+<h1>⚽ COMP MAKER AI</h1>
+<p style="text-align:center">Automatic Football Comp Studio</p>
+
+<div class="box">
+<h3>01. Futbolçu seç</h3>
+<input id="player" list="players" placeholder="Futbolçunun adını yaz">
+<datalist id="players">
+<option>Lionel Messi</option>
+<option>Cristiano Ronaldo</option>
+<option>Neymar Jr</option>
+<option>Kylian Mbappe</option>
+<option>Erling Haaland</option>
+<option>Lamine Yamal</option>
+<option>Vinicius Junior</option>
+<option>Jude Bellingham</option>
+</datalist>
+</div>
+
+<div class="box">
+<h3>02. Matç videosu</h3>
+<input type="file" id="videoFile" accept="video/*">
+<video id="preview" controls hidden></video>
+</div>
+
+<div class="box">
+<h3>03. Comp stili</h3>
+<select id="style">
+<option>Phonk</option>
+<option>Velocity</option>
+<option>Smooth</option>
+<option>Cinematic</option>
+</select>
+</div>
+
+<div class="box">
+<h3>04. AI Video Analizi</h3>
+<button onclick="analyze()">⚡ ANALİZƏ BAŞLA</button>
+<p id="status">Sistem hazırdır.</p>
+</div>
+
+<script>
+const file=document.getElementById("videoFile");
+file.onchange=()=>{
+ const f=file.files[0];
+ if(!f)return;
+ const v=document.getElementById("preview");
+ v.src=URL.createObjectURL(f);
+ v.hidden=false;
+};
+function analyze(){
+ const player=document.getElementById("player").value.trim();
+ const f=file.files[0];
+ const status=document.getElementById("status");
+ if(!player){status.textContent="Əvvəl futbolçu adını yaz!";return;}
+ if(!f){status.textContent="Əvvəl matç videosu seç!";return;}
+ status.textContent="Layihə hazırdır: "+player+
+ " | Stil: "+document.getElementById("style").value+
+ ". Real AI analiz serveri hələ qoşulmayıb.";
+}
+</script>
+</body>
+</html>
